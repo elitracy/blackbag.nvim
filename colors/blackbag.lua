@@ -294,26 +294,26 @@ hl("LspReferenceWrite", { bg = c.bg_highlight })
 hl("LspSignatureActiveParameter", { fg = c.cyan_bright, bold = true })  -- Cyan, not orange
 hl("LspCodeLens", { fg = c.comment })
 
--- Git Signs - Light red accents (not primary focus)
-hl("GitSignsAdd", { fg = c.red_light, bg = c.none })
-hl("GitSignsChange", { fg = c.red_dim, bg = c.none })
-hl("GitSignsDelete", { fg = c.red_subtle, bg = c.none })
-hl("GitSignsAddNr", { fg = c.red_light })
-hl("GitSignsChangeNr", { fg = c.red_dim })
-hl("GitSignsDeleteNr", { fg = c.red_subtle })
-hl("GitSignsAddLn", { bg = "#1a0808" })  -- Very subtle red tint
-hl("GitSignsChangeLn", { bg = "#1a0a0a" })
-hl("GitSignsDeleteLn", { bg = "#150606" })
+-- Git Signs - Teal for additions, orange for changes, red for deletions
+hl("GitSignsAdd", { fg = "#3eb489", bg = c.none })  -- Seagreen/teal
+hl("GitSignsChange", { fg = c.orange, bg = c.none })  -- Orange for changes
+hl("GitSignsDelete", { fg = c.red_light, bg = c.none })  -- Red for deletions
+hl("GitSignsAddNr", { fg = "#3eb489" })
+hl("GitSignsChangeNr", { fg = c.orange })
+hl("GitSignsDeleteNr", { fg = c.red_light })
+hl("GitSignsAddLn", { bg = "#0a1a14" })  -- Very subtle teal tint
+hl("GitSignsChangeLn", { bg = "#1a1408" })  -- Subtle orange tint
+hl("GitSignsDeleteLn", { bg = "#1a0808" })  -- Subtle red tint
 hl("GitSignsCurrentLineBlame", { fg = c.comment, italic = true })
 
--- Diff - subtle red tints
-hl("DiffAdd", { bg = "#1a0808" })
-hl("DiffChange", { bg = "#1a0a0a" })
-hl("DiffDelete", { bg = "#150606" })
-hl("DiffText", { bg = "#251010" })
-hl("DiffAdded", { fg = c.red_light })
-hl("DiffChanged", { fg = c.red_dim })
-hl("DiffRemoved", { fg = c.red_subtle })
+-- Diff - teal for additions, orange for changes, red for deletions
+hl("DiffAdd", { bg = "#0a1a14" })  -- Subtle teal tint
+hl("DiffChange", { bg = "#1a1408" })  -- Subtle orange tint
+hl("DiffDelete", { bg = "#1a0808" })  -- Subtle red tint
+hl("DiffText", { bg = "#2a1e0a" })  -- Orange highlight for changed text
+hl("DiffAdded", { fg = "#3eb489" })  -- Seagreen/teal
+hl("DiffChanged", { fg = c.orange })  -- Orange
+hl("DiffRemoved", { fg = c.red_light })  -- Red
 
 -- Snacks.nvim
 hl("SnacksNormal", { fg = c.fg, bg = c.none })
@@ -345,12 +345,12 @@ hl("CmpItemMenu", { fg = c.fg_muted, italic = true })
 hl("CmpItemKind", { fg = c.blue })
 
 -- Lualine (StatusLine groups for auto-detection)
-hl("StatusNormal", { fg = c.bg_alt, bg = c.fg_dim })
-hl("StatusInsert", { fg = c.bg_alt, bg = c.fg_bright })
-hl("StatusVisual", { fg = c.bg_alt, bg = c.orange })  -- ORANGE - you're in visual mode
-hl("StatusReplace", { fg = c.bg_alt, bg = c.red_light })  -- Red for replace
-hl("StatusCommand", { fg = c.bg_alt, bg = c.cyan })
-hl("StatusTerminal", { fg = c.bg_alt, bg = c.blue })
+hl("StatusNormal", { fg = "#000000", bg = c.blue })  -- Blue for normal mode
+hl("StatusInsert", { fg = "#000000", bg = "#3eb489" })  -- Teal for insert mode
+hl("StatusVisual", { fg = "#000000", bg = c.orange })  -- Orange for visual mode
+hl("StatusReplace", { fg = "#ffffff", bg = c.red_light })  -- Red for replace mode
+hl("StatusCommand", { fg = "#000000", bg = c.cyan_bright })  -- Bright cyan for command mode
+hl("StatusTerminal", { fg = "#000000", bg = c.blue_bright })  -- Bright blue for terminal mode
 
 -- Bufferline
 hl("BufferLineFill", { bg = c.none })
