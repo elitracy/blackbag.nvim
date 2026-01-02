@@ -79,7 +79,7 @@ hl("Normal", { fg = c.fg, bg = c.none })
 hl("NormalFloat", { fg = c.fg, bg = c.bg_alt })
 hl("NormalNC", { fg = c.fg_dim, bg = c.none })  -- Dimmed for non-focused windows
 hl("LineNr", { fg = c.line_nr, bg = c.none })
-hl("CursorLine", { bg = "#1a1408" })  -- Subtle orange tint for current line
+hl("CursorLine", { bg = "#2a1a0a" })  -- Subtle orange tint for current line
 hl("CursorLineNr", { fg = c.cursor_line_nr, bg = c.none, bold = true })  -- ORANGE - shows position
 hl("CursorColumn", { bg = c.bg_highlight })
 hl("SignColumn", { bg = c.none })
