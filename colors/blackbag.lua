@@ -86,8 +86,8 @@ hl("SignColumn", { bg = c.none })
 hl("ColorColumn", { bg = c.bg_highlight })
 hl("FoldColumn", { fg = c.line_nr, bg = c.none })
 hl("Folded", { fg = c.comment, bg = c.bg_highlight })
-hl("Visual", { bg = c.bg_visual })
-hl("VisualNOS", { bg = c.bg_visual })
+hl("Visual", { fg = c.fg_bright, bg = "#332211", bold = true })  -- Orange-tinted bg for visibility
+hl("VisualNOS", { fg = c.fg_bright, bg = "#332211", bold = true })
 hl("Search", { fg = "#000000", bg = c.orange, bold = true })  -- ORANGE - primary focus
 hl("IncSearch", { fg = "#000000", bg = c.orange_bright, bold = true })  -- ORANGE - current match
 hl("CurSearch", { link = "IncSearch" })
