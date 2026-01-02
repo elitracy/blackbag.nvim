@@ -5,7 +5,7 @@
 
 -- Clear existing highlights
 if vim.g.colors_name then
-  vim.cmd.hi("clear")
+    vim.cmd.hi("clear")
 end
 
 -- Set colorscheme name and enable true colors
@@ -14,41 +14,49 @@ vim.o.termguicolors = true
 
 -- Color Palette
 local c = {
-  -- Base colors
-  none = "NONE",
-  bg = "NONE",
-  bg_alt = "#0a0e14",
-  bg_highlight = "#16191f",
-  bg_visual = "#1a2332",
+    -- Base colors
+    none = "NONE",
+    bg = "NONE",
+    bg_alt = "#0a0e14",
+    bg_highlight = "#16191f",
+    bg_visual = "#1a2332",
 
-  -- Text hierarchy (light blue/white-blue)
-  fg = "#d0e8ff",           -- Primary text
-  fg_bright = "#ffffff",    -- Brightest text
-  fg_dim = "#a0c5e0",       -- Dimmed text
-  fg_muted = "#7099ba",     -- Muted text
+    -- Text hierarchy (light blue/white-blue)
+    fg = "#d0e8ff",        -- Primary text
+    fg_bright = "#ffffff", -- Brightest text
+    fg_dim = "#a0c5e0",    -- Dimmed text
+    fg_muted = "#7099ba",  -- Muted text
 
-  -- Orange - RARE, only for primary focus (search, current position)
-  orange = "#ff8800",
-  orange_bright = "#ffaa44",
+    -- Orange - RARE, only for primary focus (search, current position)
+    orange = "#ff8800",
+    orange_bright = "#ffaa44",
 
-  -- Light red - accent color for warnings, git changes, secondary highlights
-  red_light = "#ff6b6b",
-  red_dim = "#cc5555",
-  red_subtle = "#994444",
+    -- Light red - accent color for warnings, git changes, secondary highlights
+    red_light = "#ff6b6b",
+    red_dim = "#cc5555",
+    red_subtle = "#994444",
 
-  -- Supporting colors (most syntax uses these)
-  cyan = "#66d9ef",
-  cyan_dim = "#4db8cc",
-  cyan_bright = "#88eeff",
-  blue = "#78b9ff",
-  blue_bright = "#a0d0ff",
-  blue_dim = "#5588cc",
+    -- Supporting colors (most syntax uses these)
+    cyan = "#66d9ef",
+    cyan_dim = "#4db8cc",
+    cyan_bright = "#88eeff",
+    blue = "#78b9ff",
+    blue_bright = "#a0d0ff",
+    blue_dim = "#5588cc",
 
-  -- UI elements
-  border = "#5a6a7a",
-  line_nr = "#708090",
-  cursor_line_nr = "#ff8800",  -- Orange - draws eye to current position
-  comment = "#556677",
+    -- Git colors
+    teal = "#3eb489", -- Seagreen/teal for git additions
+
+    -- UI specific colors
+    visual_bg = "#2a5a9a",    -- Light blue for visual selection
+    cursorline_bg = "#2a1a0a", -- Subtle orange tint for cursor line
+    black = "#000000",         -- Pure black
+
+    -- UI elements
+    border = "#5a6a7a",
+    line_nr = "#708090",
+    cursor_line_nr = "#ff8800", -- Orange - draws eye to current position
+    comment = "#556677",
 }
 
 -- Terminal colors
@@ -71,28 +79,28 @@ vim.g.terminal_color_15 = c.fg_bright
 
 -- Helper function
 local function hl(group, opts)
-  vim.api.nvim_set_hl(0, group, opts)
+    vim.api.nvim_set_hl(0, group, opts)
 end
 
 -- Core Editor
 hl("Normal", { fg = c.fg, bg = c.none })
 hl("NormalFloat", { fg = c.fg, bg = c.bg_alt })
-hl("NormalNC", { fg = c.fg_dim, bg = c.none })  -- Dimmed for non-focused windows
+hl("NormalNC", { fg = c.fg_dim, bg = c.none })                          -- Dimmed for non-focused windows
 hl("LineNr", { fg = c.line_nr, bg = c.none })
-hl("CursorLine", { bg = "#2a1a0a" })  -- Subtle orange tint for current line
-hl("CursorLineNr", { fg = c.cursor_line_nr, bg = c.none, bold = true })  -- ORANGE - shows position
+hl("CursorLine", { bg = c.cursorline_bg })                              -- Subtle orange tint for current line
+hl("CursorLineNr", { fg = c.cursor_line_nr, bg = c.none, bold = true }) -- ORANGE - shows position
 hl("CursorColumn", { bg = c.bg_highlight })
 hl("SignColumn", { bg = c.none })
 hl("ColorColumn", { bg = c.bg_highlight })
 hl("FoldColumn", { fg = c.line_nr, bg = c.none })
 hl("Folded", { fg = c.comment, bg = c.bg_highlight })
-hl("Visual", { fg = c.fg_bright, bg = "#2a5a9a", bold = true })  -- Light blue bg for visibility
-hl("VisualNOS", { fg = c.fg_bright, bg = "#2a5a9a", bold = true })
-hl("Search", { fg = "#000000", bg = c.orange, bold = true })  -- ORANGE - primary focus
-hl("IncSearch", { fg = "#000000", bg = c.orange_bright, bold = true })  -- ORANGE - current match
+hl("Visual", { fg = c.fg_bright, bg = c.visual_bg, bold = true })        -- Light blue bg for visibility
+hl("VisualNOS", { fg = c.fg_bright, bg = c.visual_bg, bold = true })
+hl("Search", { fg = c.black, bg = c.orange, bold = true })           -- ORANGE - primary focus
+hl("IncSearch", { fg = c.black, bg = c.orange_bright, bold = true }) -- ORANGE - current match
 hl("CurSearch", { link = "IncSearch" })
-hl("Substitute", { fg = "#000000", bg = c.cyan })  -- Cyan instead of orange
-hl("MatchParen", { fg = c.cyan_bright, bold = true })  -- Bright cyan instead of orange
+hl("Substitute", { fg = c.black, bg = c.cyan })                      -- Cyan instead of orange
+hl("MatchParen", { fg = c.cyan_bright, bold = true })                  -- Bright cyan instead of orange
 hl("Cursor", { fg = c.none, bg = c.fg })
 hl("TermCursor", { fg = c.none, bg = c.fg })
 hl("TermCursorNC", { fg = c.none, bg = c.fg_dim })
@@ -114,8 +122,8 @@ hl("WildMenu", { fg = c.fg_bright, bg = c.bg_highlight })
 hl("QuickFixLine", { bg = c.bg_highlight })
 
 -- Messages
-hl("ErrorMsg", { fg = c.red_light, bold = true })  -- Red instead of orange
-hl("WarningMsg", { fg = c.red_light })  -- Red instead of orange
+hl("ErrorMsg", { fg = c.red_light, bold = true }) -- Red instead of orange
+hl("WarningMsg", { fg = c.red_light })            -- Red instead of orange
 hl("ModeMsg", { fg = c.fg_dim })
 hl("MoreMsg", { fg = c.cyan })
 hl("Question", { fg = c.cyan })
@@ -134,13 +142,13 @@ hl("Number", { fg = c.blue_bright })
 hl("Boolean", { fg = c.blue })
 hl("Float", { fg = c.blue_bright })
 hl("Identifier", { fg = c.fg_dim })
-hl("Function", { fg = c.cyan_bright })  -- Cyan, not orange
-hl("Statement", { fg = c.blue })  -- Blue, not orange
-hl("Conditional", { fg = c.blue })  -- Blue, not orange
-hl("Repeat", { fg = c.blue })  -- Blue, not orange
+hl("Function", { fg = c.cyan_bright }) -- Cyan, not orange
+hl("Statement", { fg = c.blue })       -- Blue, not orange
+hl("Conditional", { fg = c.blue })     -- Blue, not orange
+hl("Repeat", { fg = c.blue })          -- Blue, not orange
 hl("Label", { fg = c.blue_dim })
 hl("Operator", { fg = c.fg_muted })
-hl("Keyword", { fg = c.blue })  -- Blue, not orange
+hl("Keyword", { fg = c.blue }) -- Blue, not orange
 hl("Exception", { fg = c.blue })
 hl("PreProc", { fg = c.blue_dim })
 hl("Include", { fg = c.blue_dim })
@@ -159,7 +167,7 @@ hl("Delimiter", { fg = c.fg_dim })
 hl("Debug", { fg = c.red_subtle })
 hl("Underlined", { underline = true })
 hl("Ignore", { fg = c.comment })
-hl("Error", { fg = c.red_light, bold = true })  -- Red
+hl("Error", { fg = c.red_light, bold = true }) -- Red
 hl("Todo", { fg = c.red_light, bold = true })  -- Red for TODOs
 hl("Bold", { bold = true })
 hl("Italic", { italic = true })
@@ -179,14 +187,14 @@ hl("@character", { link = "Character" })
 hl("@boolean", { link = "Boolean" })
 hl("@number", { link = "Number" })
 hl("@float", { link = "Float" })
-hl("@function", { fg = c.cyan_bright })  -- Cyan, not orange
+hl("@function", { fg = c.cyan_bright }) -- Cyan, not orange
 hl("@function.builtin", { fg = c.cyan })
 hl("@function.macro", { fg = c.cyan_dim })
-hl("@method", { fg = c.cyan_bright })  -- Cyan, not orange
+hl("@method", { fg = c.cyan_bright }) -- Cyan, not orange
 hl("@constructor", { fg = c.blue })
 hl("@parameter", { fg = c.fg })
-hl("@keyword", { fg = c.blue })  -- Blue, not orange
-hl("@keyword.function", { fg = c.blue })  -- Blue, not orange
+hl("@keyword", { fg = c.blue })          -- Blue, not orange
+hl("@keyword.function", { fg = c.blue }) -- Blue, not orange
 hl("@keyword.operator", { fg = c.blue_dim })
 hl("@keyword.return", { fg = c.blue })
 hl("@keyword.coroutine", { fg = c.blue })
@@ -226,7 +234,7 @@ hl("@markup.heading.6", { fg = c.fg_bright, bold = true })
 hl("@markup.link", { fg = c.cyan, underline = true })
 hl("@markup.link.label", { fg = c.cyan })
 hl("@markup.link.url", { fg = c.cyan_dim, underline = true })
-hl("@markup.list", { fg = c.blue_dim })  -- Blue instead of orange
+hl("@markup.list", { fg = c.blue_dim }) -- Blue instead of orange
 hl("@markup.list.checked", { fg = c.blue })
 hl("@markup.list.unchecked", { fg = c.blue_dim })
 hl("@markup.quote", { fg = c.comment, italic = true })
@@ -241,7 +249,7 @@ hl("@text.strike", { strikethrough = true })
 hl("@text.title", { fg = c.fg_bright, bold = true })
 hl("@text.literal", { fg = c.cyan })
 hl("@text.uri", { fg = c.cyan, underline = true })
-hl("@tag", { fg = c.blue })  -- Blue instead of orange
+hl("@tag", { fg = c.blue }) -- Blue instead of orange
 hl("@tag.attribute", { fg = c.cyan })
 hl("@tag.delimiter", { fg = c.fg_dim })
 
@@ -282,7 +290,7 @@ hl("DiagnosticUnderlineWarn", { undercurl = true, sp = c.red_dim })
 hl("DiagnosticUnderlineInfo", { undercurl = true, sp = c.fg_dim })
 hl("DiagnosticUnderlineHint", { undercurl = true, sp = c.fg_muted })
 hl("DiagnosticUnderlineOk", { undercurl = true, sp = c.cyan })
-hl("DiagnosticVirtualTextError", { fg = c.red_subtle })  -- Subtle so not distracting
+hl("DiagnosticVirtualTextError", { fg = c.red_subtle }) -- Subtle so not distracting
 hl("DiagnosticVirtualTextWarn", { fg = c.red_subtle })
 hl("DiagnosticVirtualTextInfo", { fg = c.comment })
 hl("DiagnosticVirtualTextHint", { fg = c.comment })
@@ -291,29 +299,29 @@ hl("DiagnosticVirtualTextHint", { fg = c.comment })
 hl("LspReferenceText", { bg = c.bg_highlight })
 hl("LspReferenceRead", { bg = c.bg_highlight })
 hl("LspReferenceWrite", { bg = c.bg_highlight })
-hl("LspSignatureActiveParameter", { fg = c.cyan_bright, bold = true })  -- Cyan, not orange
+hl("LspSignatureActiveParameter", { fg = c.cyan_bright, bold = true }) -- Cyan, not orange
 hl("LspCodeLens", { fg = c.comment })
 
 -- Git Signs - Teal for additions, orange for changes, red for deletions
-hl("GitSignsAdd", { fg = "#3eb489", bg = c.none })  -- Seagreen/teal
-hl("GitSignsChange", { fg = c.orange, bg = c.none })  -- Orange for changes
-hl("GitSignsDelete", { fg = c.red_light, bg = c.none })  -- Red for deletions
-hl("GitSignsAddNr", { fg = "#3eb489" })
+hl("GitSignsAdd", { fg = c.teal, bg = c.none })      -- Seagreen/teal
+hl("GitSignsChange", { fg = c.orange, bg = c.none })    -- Orange for changes
+hl("GitSignsDelete", { fg = c.red_light, bg = c.none }) -- Red for deletions
+hl("GitSignsAddNr", { fg = c.teal })
 hl("GitSignsChangeNr", { fg = c.orange })
 hl("GitSignsDeleteNr", { fg = c.red_light })
-hl("GitSignsAddLn", { bg = "#0a1a14" })  -- Very subtle teal tint
-hl("GitSignsChangeLn", { bg = "#1a1408" })  -- Subtle orange tint
-hl("GitSignsDeleteLn", { bg = "#1a0808" })  -- Subtle red tint
+hl("GitSignsAddLn", { bg = "#0a1a14" })    -- Very subtle teal tint
+hl("GitSignsChangeLn", { bg = "#1a1408" }) -- Subtle orange tint
+hl("GitSignsDeleteLn", { bg = "#1a0808" }) -- Subtle red tint
 hl("GitSignsCurrentLineBlame", { fg = c.comment, italic = true })
 
 -- Diff - teal for additions, orange for changes, red for deletions
-hl("DiffAdd", { bg = "#0a1a14" })  -- Subtle teal tint
-hl("DiffChange", { bg = "#1a1408" })  -- Subtle orange tint
-hl("DiffDelete", { bg = "#1a0808" })  -- Subtle red tint
-hl("DiffText", { bg = "#2a1e0a" })  -- Orange highlight for changed text
-hl("DiffAdded", { fg = "#3eb489" })  -- Seagreen/teal
-hl("DiffChanged", { fg = c.orange })  -- Orange
-hl("DiffRemoved", { fg = c.red_light })  -- Red
+hl("DiffAdd", { bg = "#0a1a14" })       -- Subtle teal tint
+hl("DiffChange", { bg = "#1a1408" })    -- Subtle orange tint
+hl("DiffDelete", { bg = "#1a0808" })    -- Subtle red tint
+hl("DiffText", { bg = "#2a1e0a" })      -- Orange highlight for changed text
+hl("DiffAdded", { fg = c.teal })        -- Seagreen/teal
+hl("DiffChanged", { fg = c.orange })    -- Orange
+hl("DiffRemoved", { fg = c.red_light }) -- Red
 
 -- Snacks.nvim
 hl("SnacksNormal", { fg = c.fg, bg = c.none })
@@ -322,51 +330,85 @@ hl("SnacksWin", { fg = c.fg, bg = c.none })
 hl("SnacksWinNC", { fg = c.fg, bg = c.none })
 hl("SnacksPickerDir", { fg = c.cyan })
 hl("SnacksPickerFile", { fg = c.fg_bright })
-hl("SnacksPickerMatch", { fg = c.orange, bold = true })  -- ORANGE - what you're selecting
+hl("SnacksPickerMatch", { fg = c.orange, bold = true }) -- ORANGE - what you're selecting
 hl("SnacksExplorerNormal", { fg = c.fg, bg = c.none })
 hl("SnacksExplorerNormalNC", { fg = c.fg, bg = c.none })
+-- Snacks git status colors
+hl("SnacksPickerGitStatusModified", { fg = c.orange })   -- Orange for modified files
+hl("SnacksPickerGitStatusAdded", { fg = c.teal })        -- Teal for additions
+hl("SnacksPickerGitStatusUntracked", { fg = c.teal })    -- Teal for untracked
+hl("SnacksPickerGitStatusDeleted", { fg = c.red_light }) -- Red for deletions
+hl("SnacksPickerGitStatusUnmerged", { fg = c.teal })     -- Teal for unmerged
+hl("SnacksPickerGitAdd", { fg = c.teal })
+hl("SnacksPickerGitChange", { fg = c.orange })
+hl("SnacksPickerGitDelete", { fg = c.red_light })
+hl("SnacksGitAdd", { fg = c.teal })
+hl("SnacksGitChange", { fg = c.orange })
+hl("SnacksGitDelete", { fg = c.red_light })
+-- Snacks git icons - match text colors
+hl("SnacksPickerIconGitStatusModified", { fg = c.orange })
+hl("SnacksPickerIconGitStatusAdded", { fg = c.teal })
+hl("SnacksPickerIconGitStatusUntracked", { fg = c.teal })
+hl("SnacksPickerIconGitStatusDeleted", { fg = c.red_light })
+hl("SnacksPickerIconGitStatusUnmerged", { fg = c.teal })
+hl("SnacksPickerIconGitAdd", { fg = c.teal })
+hl("SnacksPickerIconGitChange", { fg = c.orange })
+hl("SnacksPickerIconGitDelete", { fg = c.red_light })
 
 -- Blink.cmp
 hl("BlinkCmpMenu", { fg = c.fg, bg = c.bg_alt })
 hl("BlinkCmpMenuBorder", { fg = c.border, bg = c.bg_alt })
 hl("BlinkCmpMenuSelection", { fg = c.fg_bright, bg = c.bg_highlight })
 hl("BlinkCmpLabel", { fg = c.fg_dim })
-hl("BlinkCmpLabelMatch", { fg = c.orange, bold = true })  -- ORANGE - matched characters
-hl("BlinkCmpLabelMatchFuzzy", { fg = c.cyan_bright })  -- Cyan for fuzzy (less important)
+hl("BlinkCmpLabelMatch", { fg = c.orange, bold = true }) -- ORANGE - matched characters
+hl("BlinkCmpLabelMatchFuzzy", { fg = c.cyan_bright })    -- Cyan for fuzzy (less important)
 hl("BlinkCmpKind", { fg = c.fg_muted })
 hl("BlinkCmpDoc", { fg = c.fg, bg = c.bg_alt })
 hl("BlinkCmpDocBorder", { fg = c.border, bg = c.bg_alt })
 
 -- Cmp (nvim-cmp) - for compatibility
 hl("CmpItemAbbr", { fg = c.fg_dim })
-hl("CmpItemAbbrMatch", { fg = c.orange, bold = true })  -- ORANGE
+hl("CmpItemAbbrMatch", { fg = c.orange, bold = true }) -- ORANGE
 hl("CmpItemAbbrMatchFuzzy", { fg = c.cyan_bright })
 hl("CmpItemMenu", { fg = c.fg_muted, italic = true })
 hl("CmpItemKind", { fg = c.blue })
 
 -- Lualine (StatusLine groups for auto-detection)
-hl("StatusNormal", { fg = "#000000", bg = c.blue })  -- Blue for normal mode
-hl("StatusInsert", { fg = "#000000", bg = "#3eb489" })  -- Teal for insert mode
-hl("StatusVisual", { fg = "#000000", bg = c.orange })  -- Orange for visual mode
-hl("StatusReplace", { fg = "#ffffff", bg = c.red_light })  -- Red for replace mode
-hl("StatusCommand", { fg = "#000000", bg = c.cyan_bright })  -- Bright cyan for command mode
-hl("StatusTerminal", { fg = "#000000", bg = c.blue_bright })  -- Bright blue for terminal mode
+hl("StatusNormal", { fg = c.black, bg = c.blue })          -- Blue for normal mode
+hl("StatusInsert", { fg = c.black, bg = c.teal })          -- Teal for insert mode
+hl("StatusVisual", { fg = c.black, bg = c.orange })        -- Orange for visual mode
+hl("StatusReplace", { fg = c.fg_bright, bg = c.red_light })    -- Red for replace mode
+hl("StatusCommand", { fg = c.black, bg = c.cyan_bright })  -- Bright cyan for command mode
+hl("StatusTerminal", { fg = c.black, bg = c.blue_bright }) -- Bright blue for terminal mode
 
 -- Bufferline
 hl("BufferLineFill", { bg = c.none })
 hl("BufferLineBackground", { fg = c.fg_muted, bg = c.none })
-hl("BufferLineBufferSelected", { fg = c.fg_bright, bg = c.bg_highlight, bold = true })  -- Bright text, not orange
+hl("BufferLineBufferSelected", { fg = c.fg_bright, bg = c.bg_highlight, bold = true }) -- Bright text, not orange
 hl("BufferLineBufferVisible", { fg = c.fg_dim, bg = c.none })
 hl("BufferLineSeparator", { fg = c.border, bg = c.none })
 hl("BufferLineDiagnostic", { fg = c.red_subtle })
 hl("BufferLineDiagnosticVisible", { fg = c.red_subtle })
+-- Bufferline icons - ensure they inherit background from parent tab
+-- Create a function to set icon backgrounds for all file types
+local icon_filetypes = {
+  "lua", "vim", "js", "ts", "tsx", "jsx", "py", "go", "rs", "c", "cpp",
+  "h", "hpp", "md", "txt", "json", "yaml", "toml", "sh", "bash", "zsh",
+  "fish", "html", "css", "scss", "sass", "vue", "svelte", "rb", "java",
+  "kt", "swift", "cs", "php", "sql", "dockerfile", "makefile", "default"
+}
+for _, ft in ipairs(icon_filetypes) do
+  hl("BufferLineDevIcon" .. ft:gsub("^%l", string.upper), { bg = c.none })
+  hl("BufferLineDevIcon" .. ft:gsub("^%l", string.upper) .. "Inactive", { bg = c.none })
+  hl("BufferLineDevIcon" .. ft:gsub("^%l", string.upper) .. "Selected", { bg = c.bg_highlight })
+end
 
 -- Telescope (if used)
 hl("TelescopeBorder", { fg = c.border, bg = c.bg_alt })
 hl("TelescopeNormal", { fg = c.fg, bg = c.bg_alt })
 hl("TelescopeSelection", { fg = c.fg_bright, bg = c.bg_highlight })
-hl("TelescopeMatching", { fg = c.orange, bold = true })  -- ORANGE - matched text
-hl("TelescopePromptPrefix", { fg = c.cyan })  -- Cyan instead of orange
+hl("TelescopeMatching", { fg = c.orange, bold = true }) -- ORANGE - matched text
+hl("TelescopePromptPrefix", { fg = c.cyan })            -- Cyan instead of orange
 
 -- Notify
 hl("NotifyERRORBorder", { fg = c.red_light })
