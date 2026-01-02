@@ -1,0 +1,17 @@
+# Vim swap files
+*.swp
+*.swo
+*~
+
+# MacOS
+.DS_Store
+
+# Lazy lock file (users should have their own)
+lazy-lock.json
+
+# IDE
+.idea/
+.vscode/
+
+# Testing
+test/
