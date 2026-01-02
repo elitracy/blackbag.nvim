@@ -10,6 +10,10 @@ A focused Neovim colorscheme inspired by the cinematic terminal UI aesthetics fr
 - 🎯 **Strategic color use** - Every color has a purpose
 - 🔌 **Full plugin support** - Treesitter, LSP, Git signs, pickers, completion, and more
 
+## Screenshots
+
+![Black Bag colorscheme](blackbagui.png)
+
 ## Color Philosophy
 
 This theme uses color strategically to guide your attention:
@@ -133,14 +137,6 @@ This theme is designed for transparent backgrounds. It works great with [transpa
 
 - Neovim >= 0.8.0
 - True color terminal (`set termguicolors`)
-
-## Screenshots
-
-![Black Bag colorscheme](blackbagui.png)
-
-## Inspiration
-
-Inspired by the sleek, focused terminal UI design from the Black Bag movie.
 
 ## License
 
