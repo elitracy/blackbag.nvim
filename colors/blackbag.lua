@@ -45,8 +45,8 @@ local c = {
   blue_dim = "#5588cc",
 
   -- UI elements
-  border = "#2a3544",
-  line_nr = "#405060",
+  border = "#5a6a7a",
+  line_nr = "#708090",
   cursor_line_nr = "#ff8800",  -- Orange - draws eye to current position
   comment = "#556677",
 }
@@ -86,8 +86,8 @@ hl("SignColumn", { bg = c.none })
 hl("ColorColumn", { bg = c.bg_highlight })
 hl("FoldColumn", { fg = c.line_nr, bg = c.none })
 hl("Folded", { fg = c.comment, bg = c.bg_highlight })
-hl("Visual", { fg = c.fg_bright, bg = "#332211", bold = true })  -- Orange-tinted bg for visibility
-hl("VisualNOS", { fg = c.fg_bright, bg = "#332211", bold = true })
+hl("Visual", { fg = c.fg_bright, bg = "#2a5a9a", bold = true })  -- Light blue bg for visibility
+hl("VisualNOS", { fg = c.fg_bright, bg = "#2a5a9a", bold = true })
 hl("Search", { fg = "#000000", bg = c.orange, bold = true })  -- ORANGE - primary focus
 hl("IncSearch", { fg = "#000000", bg = c.orange_bright, bold = true })  -- ORANGE - current match
 hl("CurSearch", { link = "IncSearch" })
