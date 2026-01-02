@@ -13,6 +13,7 @@ A focused Neovim colorscheme inspired by the cinematic terminal UI aesthetics fr
 ## Screenshots
 
 ![Black Bag colorscheme](blackbagui.png)
+![Black Bag transparent](blackbagui-transparent.png)
 
 ## Color Philosophy
 
