@@ -136,7 +136,7 @@ This theme is designed for transparent backgrounds. It works great with [transpa
 
 ## Screenshots
 
-*Coming soon - feel free to submit yours!*
+![Black Bag colorscheme](blackbagui.png)
 
 ## Inspiration
 
