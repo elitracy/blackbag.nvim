@@ -31,7 +31,10 @@ local c = {
     orange = "#ff8800",
     orange_bright = "#ffaa44",
 
-    -- Light red - accent color for warnings, git changes, secondary highlights
+    -- Muted amber - warnings (distinct from both error red and focus orange)
+    amber = "#cc9944",
+
+    -- Light red - accent color for errors, git changes, secondary highlights
     red_light = "#ff6b6b",
     red_dim = "#cc5555",
     red_subtle = "#994444",
@@ -123,7 +126,7 @@ hl("QuickFixLine", { bg = c.bg_highlight })
 
 -- Messages
 hl("ErrorMsg", { fg = c.red_light, bold = true }) -- Red instead of orange
-hl("WarningMsg", { fg = c.red_light })            -- Red instead of orange
+hl("WarningMsg", { fg = c.amber })
 hl("ModeMsg", { fg = c.fg_dim })
 hl("MoreMsg", { fg = c.cyan })
 hl("Question", { fg = c.cyan })
@@ -281,17 +284,17 @@ hl("@lsp.typemod.variable.defaultLibrary", { link = "@variable.builtin" })
 
 -- LSP Diagnostics - Light red for warnings/errors
 hl("DiagnosticError", { fg = c.red_light })
-hl("DiagnosticWarn", { fg = c.red_light })
+hl("DiagnosticWarn", { fg = c.amber })
 hl("DiagnosticInfo", { fg = c.fg_dim })
 hl("DiagnosticHint", { fg = c.fg_muted })
 hl("DiagnosticOk", { fg = c.cyan })
 hl("DiagnosticUnderlineError", { undercurl = true, sp = c.red_light })
-hl("DiagnosticUnderlineWarn", { undercurl = true, sp = c.red_dim })
+hl("DiagnosticUnderlineWarn", { undercurl = true, sp = c.amber })
 hl("DiagnosticUnderlineInfo", { undercurl = true, sp = c.fg_dim })
 hl("DiagnosticUnderlineHint", { undercurl = true, sp = c.fg_muted })
 hl("DiagnosticUnderlineOk", { undercurl = true, sp = c.cyan })
 hl("DiagnosticVirtualTextError", { fg = c.red_subtle }) -- Subtle so not distracting
-hl("DiagnosticVirtualTextWarn", { fg = c.red_subtle })
+hl("DiagnosticVirtualTextWarn", { fg = c.amber })
 hl("DiagnosticVirtualTextInfo", { fg = c.comment })
 hl("DiagnosticVirtualTextHint", { fg = c.comment })
 
@@ -412,24 +415,24 @@ hl("TelescopePromptPrefix", { fg = c.cyan })            -- Cyan instead of orang
 
 -- Notify
 hl("NotifyERRORBorder", { fg = c.red_light })
-hl("NotifyWARNBorder", { fg = c.red_dim })
+hl("NotifyWARNBorder", { fg = c.amber })
 hl("NotifyINFOBorder", { fg = c.fg_dim })
 hl("NotifyDEBUGBorder", { fg = c.comment })
 hl("NotifyTRACEBorder", { fg = c.comment })
 hl("NotifyERRORIcon", { fg = c.red_light })
-hl("NotifyWARNIcon", { fg = c.red_dim })
+hl("NotifyWARNIcon", { fg = c.amber })
 hl("NotifyINFOIcon", { fg = c.fg_dim })
 hl("NotifyDEBUGIcon", { fg = c.comment })
 hl("NotifyTRACEIcon", { fg = c.comment })
 hl("NotifyERRORTitle", { fg = c.red_light, bold = true })
-hl("NotifyWARNTitle", { fg = c.red_dim })
+hl("NotifyWARNTitle", { fg = c.amber })
 hl("NotifyINFOTitle", { fg = c.fg_dim })
 hl("NotifyDEBUGTitle", { fg = c.comment })
 hl("NotifyTRACETitle", { fg = c.comment })
 
 -- Health
 hl("HealthError", { fg = c.red_light })
-hl("HealthWarning", { fg = c.red_dim })
+hl("HealthWarning", { fg = c.amber })
 hl("HealthSuccess", { fg = c.cyan })
 
 -- Misc
