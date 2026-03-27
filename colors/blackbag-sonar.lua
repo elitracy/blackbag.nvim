@@ -1,7 +1,6 @@
--- Black Bag Theme
+-- Black Bag: Sonar
 -- Inspired by the Black Bag movie UI
--- Focused design: light blue/white-blue on black
--- Orange ONLY for primary focus points, light red for accents
+-- Deep ocean teal-blue aesthetic
 
 -- Clear existing highlights
 if vim.g.colors_name then
@@ -9,7 +8,7 @@ if vim.g.colors_name then
 end
 
 -- Set colorscheme name and enable true colors
-vim.g.colors_name = "blackbag"
+vim.g.colors_name = "blackbag-sonar"
 vim.o.termguicolors = true
 
 -- Color Palette
@@ -17,67 +16,67 @@ local c = {
     -- Base colors
     none = "NONE",
     bg = "NONE",
-    bg_alt = "#0a0e14",
-    bg_highlight = "#16191f",
-    bg_visual = "#1a2332",
+    bg_alt = "#0a1114",
+    bg_highlight = "#141b1f",
+    bg_visual = "#1a2c32",
 
-    -- Text hierarchy (light blue/white-blue)
-    fg = "#d0e8ff",        -- Primary text
+    -- Text hierarchy (teal-blue tinted)
+    fg = "#c8e4ec",        -- Primary text
     fg_bright = "#ffffff", -- Brightest text
-    fg_dim = "#a0c5e0",    -- Dimmed text
-    fg_muted = "#7099ba",  -- Muted text
+    fg_dim = "#90bcc4",    -- Dimmed text
+    fg_muted = "#688f98",  -- Muted text
 
     -- Orange - RARE, only for primary focus (search, current position)
     orange = "#ff8800",
     orange_bright = "#ffaa44",
 
-    -- Muted amber - warnings (distinct from both error red and focus orange)
-    amber = "#cc9944",
-
-    -- Light red - accent color for errors, git changes, secondary highlights
+    -- Light red - accent color for errors, git deletions
     red_light = "#ff6b6b",
     red_dim = "#cc5555",
     red_subtle = "#994444",
 
-    -- Supporting colors (most syntax uses these)
-    cyan = "#66d9ef",
-    cyan_dim = "#4db8cc",
-    cyan_bright = "#88eeff",
-    blue = "#78b9ff",
-    blue_bright = "#a0d0ff",
-    blue_dim = "#5588cc",
+    -- Supporting colors (spread across teal-blue spectrum, saturated)
+    seafoam = "#3cc0be",       -- Keywords, statements — punchy teal
+    seafoam_dim = "#2e9498",   -- Dimmed keywords, preprocessor
+    seafoam_bright = "#44eed8", -- Functions — vivid bright teal
+    aqua = "#38bce0",          -- Strings — saturated blue-cyan
+    aqua_dim = "#2a90b8",      -- Regex, escape chars
+    jade = "#40cc9c",          -- Numbers, constants — rich green-teal
+    jade_dim = "#309470",      -- Labels, includes
+    pale = "#80e4f0",          -- Types — bright icy blue
+    ice = "#44c8ee",           -- Constructors, macros — vivid blue
 
     -- Git colors
     teal = "#3eb489", -- Seagreen/teal for git additions
 
     -- UI specific colors
-    visual_bg = "#2a5a9a",    -- Light blue for visual selection
+    visual_bg = "#1c4450",     -- Dark teal-blue for visual selection
     cursorline_bg = "#2a1a0a", -- Subtle orange tint for cursor line
     black = "#000000",         -- Pure black
 
     -- UI elements
-    border = "#5a6a7a",
-    line_nr = "#708090",
+    border = "#486470",
+    line_nr = "#587a82",
     cursor_line_nr = "#ff8800", -- Orange - draws eye to current position
-    comment = "#556677",
+    comment = "#486068",
 }
 
 -- Terminal colors
 vim.g.terminal_color_0 = "#0a0a0a"
 vim.g.terminal_color_1 = c.red_light
-vim.g.terminal_color_2 = c.cyan
-vim.g.terminal_color_3 = c.blue
-vim.g.terminal_color_4 = c.blue_bright
+vim.g.terminal_color_2 = c.green
+vim.g.terminal_color_3 = c.emerald
+vim.g.terminal_color_4 = c.green_bright
 vim.g.terminal_color_5 = c.fg_dim
-vim.g.terminal_color_6 = c.cyan_bright
+vim.g.terminal_color_6 = c.mint
 vim.g.terminal_color_7 = c.fg
 vim.g.terminal_color_8 = c.comment
 vim.g.terminal_color_9 = c.red_light
-vim.g.terminal_color_10 = c.cyan_bright
-vim.g.terminal_color_11 = c.blue_bright
-vim.g.terminal_color_12 = c.blue_bright
+vim.g.terminal_color_10 = c.green_bright
+vim.g.terminal_color_11 = c.emerald_bright
+vim.g.terminal_color_12 = c.mint
 vim.g.terminal_color_13 = c.fg_bright
-vim.g.terminal_color_14 = c.cyan_bright
+vim.g.terminal_color_14 = c.green_bright
 vim.g.terminal_color_15 = c.fg_bright
 
 -- Helper function
@@ -88,22 +87,22 @@ end
 -- Core Editor
 hl("Normal", { fg = c.fg, bg = c.none })
 hl("NormalFloat", { fg = c.fg, bg = c.bg_alt })
-hl("NormalNC", { fg = c.fg_dim, bg = c.none })                          -- Dimmed for non-focused windows
+hl("NormalNC", { fg = c.fg_dim, bg = c.none })
 hl("LineNr", { fg = c.line_nr, bg = c.none })
-hl("CursorLine", { bg = c.cursorline_bg })                              -- Subtle orange tint for current line
-hl("CursorLineNr", { fg = c.cursor_line_nr, bg = c.none, bold = true }) -- ORANGE - shows position
+hl("CursorLine", { bg = c.cursorline_bg })
+hl("CursorLineNr", { fg = c.cursor_line_nr, bg = c.none, bold = true })
 hl("CursorColumn", { bg = c.bg_highlight })
 hl("SignColumn", { bg = c.none })
 hl("ColorColumn", { bg = c.bg_highlight })
 hl("FoldColumn", { fg = c.line_nr, bg = c.none })
 hl("Folded", { fg = c.comment, bg = c.bg_highlight })
-hl("Visual", { fg = c.fg_bright, bg = c.visual_bg, bold = true })        -- Light blue bg for visibility
+hl("Visual", { fg = c.fg_bright, bg = c.visual_bg, bold = true })
 hl("VisualNOS", { fg = c.fg_bright, bg = c.visual_bg, bold = true })
-hl("Search", { fg = c.black, bg = c.orange, bold = true })           -- ORANGE - primary focus
-hl("IncSearch", { fg = c.black, bg = c.orange_bright, bold = true }) -- ORANGE - current match
+hl("Search", { fg = c.black, bg = c.orange, bold = true })
+hl("IncSearch", { fg = c.black, bg = c.orange_bright, bold = true })
 hl("CurSearch", { link = "IncSearch" })
-hl("Substitute", { fg = c.black, bg = c.cyan })                      -- Cyan instead of orange
-hl("MatchParen", { fg = c.cyan_bright, bold = true })                  -- Bright cyan instead of orange
+hl("Substitute", { fg = c.black, bg = c.seafoam })
+hl("MatchParen", { fg = c.seafoam_bright, bold = true })
 hl("Cursor", { fg = c.none, bg = c.fg })
 hl("TermCursor", { fg = c.none, bg = c.fg })
 hl("TermCursorNC", { fg = c.none, bg = c.fg_dim })
@@ -113,6 +112,11 @@ hl("Pmenu", { fg = c.fg, bg = c.bg_alt })
 hl("PmenuSel", { fg = c.fg_bright, bg = c.bg_highlight })
 hl("PmenuSbar", { bg = c.bg_highlight })
 hl("PmenuThumb", { bg = c.fg_dim })
+hl("PmenuKind", { fg = c.fg_muted, bg = c.bg_alt })
+hl("PmenuKindSel", { fg = c.fg_dim, bg = c.bg_highlight })
+hl("PmenuExtra", { fg = c.fg_muted, bg = c.bg_alt })
+hl("PmenuExtraSel", { fg = c.fg_dim, bg = c.bg_highlight })
+hl("SnippetTabstop", { bg = c.bg_highlight })
 hl("FloatBorder", { fg = c.border, bg = c.bg_alt })
 hl("WinSeparator", { fg = c.border, bg = c.none })
 hl("VertSplit", { fg = c.border, bg = c.none })
@@ -125,100 +129,100 @@ hl("WildMenu", { fg = c.fg_bright, bg = c.bg_highlight })
 hl("QuickFixLine", { bg = c.bg_highlight })
 
 -- Messages
-hl("ErrorMsg", { fg = c.red_light, bold = true }) -- Red instead of orange
-hl("WarningMsg", { fg = c.amber })
+hl("ErrorMsg", { fg = c.red_light, bold = true })
+hl("WarningMsg", { fg = c.orange })
 hl("ModeMsg", { fg = c.fg_dim })
-hl("MoreMsg", { fg = c.cyan })
-hl("Question", { fg = c.cyan })
+hl("MoreMsg", { fg = c.seafoam })
+hl("Question", { fg = c.seafoam })
 hl("Title", { fg = c.fg_bright, bold = true })
-hl("Directory", { fg = c.cyan })
+hl("Directory", { fg = c.aqua })
 hl("NonText", { fg = c.comment })
 hl("EndOfBuffer", { fg = c.bg_alt })
 hl("SpecialKey", { fg = c.comment })
 
--- Syntax Highlighting (Basic) - Mostly blue/cyan, NO orange
+-- Syntax Highlighting — spread across seafoam/aqua/jade/ice for variety
 hl("Comment", { fg = c.comment, italic = true })
-hl("Constant", { fg = c.blue })
-hl("String", { fg = c.cyan })
-hl("Character", { fg = c.cyan })
-hl("Number", { fg = c.blue_bright })
-hl("Boolean", { fg = c.blue })
-hl("Float", { fg = c.blue_bright })
+hl("Constant", { fg = c.jade })
+hl("String", { fg = c.aqua })           -- Pulls toward blue — distinct from keywords
+hl("Character", { fg = c.aqua })
+hl("Number", { fg = c.jade })           -- Warm green — stands out from cool tones
+hl("Boolean", { fg = c.jade })
+hl("Float", { fg = c.jade })
 hl("Identifier", { fg = c.fg_dim })
-hl("Function", { fg = c.cyan_bright }) -- Cyan, not orange
-hl("Statement", { fg = c.blue })       -- Blue, not orange
-hl("Conditional", { fg = c.blue })     -- Blue, not orange
-hl("Repeat", { fg = c.blue })          -- Blue, not orange
-hl("Label", { fg = c.blue_dim })
+hl("Function", { fg = c.seafoam_bright }) -- Bright seafoam — most prominent
+hl("Statement", { fg = c.seafoam })
+hl("Conditional", { fg = c.seafoam })
+hl("Repeat", { fg = c.seafoam })
+hl("Label", { fg = c.jade_dim })
 hl("Operator", { fg = c.fg_muted })
-hl("Keyword", { fg = c.blue }) -- Blue, not orange
-hl("Exception", { fg = c.blue })
-hl("PreProc", { fg = c.blue_dim })
-hl("Include", { fg = c.blue_dim })
-hl("Define", { fg = c.blue_dim })
-hl("Macro", { fg = c.cyan })
-hl("PreCondit", { fg = c.blue_dim })
-hl("Type", { fg = c.blue })
-hl("StorageClass", { fg = c.blue })
-hl("Structure", { fg = c.blue })
-hl("Typedef", { fg = c.blue })
+hl("Keyword", { fg = c.seafoam })       -- Mid seafoam — backbone of syntax
+hl("Exception", { fg = c.seafoam })
+hl("PreProc", { fg = c.seafoam_dim })
+hl("Include", { fg = c.jade_dim })
+hl("Define", { fg = c.seafoam_dim })
+hl("Macro", { fg = c.ice })             -- Cool blue-teal — distinct from keywords
+hl("PreCondit", { fg = c.seafoam_dim })
+hl("Type", { fg = c.pale })             -- Light and airy — clearly different from keywords
+hl("StorageClass", { fg = c.pale })
+hl("Structure", { fg = c.pale })
+hl("Typedef", { fg = c.pale })
 hl("Special", { fg = c.fg_dim })
-hl("SpecialChar", { fg = c.cyan })
-hl("SpecialComment", { fg = c.cyan_dim })
-hl("Tag", { fg = c.blue })
+hl("SpecialChar", { fg = c.ice })
+hl("SpecialComment", { fg = c.aqua_dim })
+hl("Tag", { fg = c.pale })
 hl("Delimiter", { fg = c.fg_dim })
 hl("Debug", { fg = c.red_subtle })
 hl("Underlined", { underline = true })
 hl("Ignore", { fg = c.comment })
-hl("Error", { fg = c.red_light, bold = true }) -- Red
-hl("Todo", { fg = c.red_light, bold = true })  -- Red for TODOs
+hl("Error", { fg = c.red_light, bold = true })
+hl("Todo", { fg = c.red_light, bold = true })
 hl("Bold", { bold = true })
 hl("Italic", { italic = true })
 
--- Treesitter - Mostly blue/cyan for calm, focused syntax
+-- Treesitter — varied across seafoam/aqua/jade/ice/pale
 hl("@comment", { link = "Comment" })
 hl("@error", { fg = c.red_light })
 hl("@none", { fg = c.fg })
 hl("@operator", { link = "Operator" })
 hl("@punctuation.delimiter", { fg = c.fg_dim })
 hl("@punctuation.bracket", { fg = c.fg_dim })
-hl("@punctuation.special", { fg = c.cyan })
+hl("@punctuation.special", { fg = c.ice })
 hl("@string", { link = "String" })
-hl("@string.regex", { fg = c.cyan_dim })
-hl("@string.escape", { fg = c.cyan_bright })
+hl("@string.regex", { fg = c.aqua_dim })
+hl("@string.escape", { fg = c.ice })
 hl("@character", { link = "Character" })
 hl("@boolean", { link = "Boolean" })
 hl("@number", { link = "Number" })
 hl("@float", { link = "Float" })
-hl("@function", { fg = c.cyan_bright }) -- Cyan, not orange
-hl("@function.builtin", { fg = c.cyan })
-hl("@function.macro", { fg = c.cyan_dim })
-hl("@method", { fg = c.cyan_bright }) -- Cyan, not orange
-hl("@constructor", { fg = c.blue })
+hl("@function", { fg = c.seafoam_bright })
+hl("@function.builtin", { fg = c.aqua })
+hl("@function.macro", { fg = c.aqua_dim })
+hl("@method", { fg = c.seafoam_bright })
+hl("@constructor", { fg = c.ice })
 hl("@parameter", { fg = c.fg })
-hl("@keyword", { fg = c.blue })          -- Blue, not orange
-hl("@keyword.function", { fg = c.blue }) -- Blue, not orange
-hl("@keyword.operator", { fg = c.blue_dim })
-hl("@keyword.return", { fg = c.blue })
-hl("@keyword.coroutine", { fg = c.blue })
-hl("@conditional", { fg = c.blue })
-hl("@repeat", { fg = c.blue })
-hl("@label", { fg = c.blue_dim })
-hl("@include", { fg = c.blue_dim })
-hl("@exception", { fg = c.blue })
+hl("@keyword", { fg = c.seafoam })
+hl("@keyword.function", { fg = c.seafoam })
+hl("@keyword.operator", { fg = c.seafoam_dim })
+hl("@keyword.return", { fg = c.seafoam })
+hl("@keyword.coroutine", { fg = c.seafoam })
+hl("@conditional", { fg = c.seafoam })
+hl("@repeat", { fg = c.seafoam })
+hl("@label", { fg = c.jade_dim })
+hl("@include", { fg = c.jade_dim })
+hl("@exception", { fg = c.seafoam })
 hl("@type", { link = "Type" })
 hl("@type.builtin", { link = "Type" })
 hl("@type.definition", { link = "Type" })
-hl("@attribute", { fg = c.cyan_dim })
+hl("@attribute", { fg = c.aqua_dim })
 hl("@field", { fg = c.fg_dim })
 hl("@property", { fg = c.fg_dim })
 hl("@variable", { fg = c.fg_dim })
 hl("@variable.builtin", { fg = c.fg_dim })
-hl("@constant", { fg = c.blue })
-hl("@constant.builtin", { fg = c.blue })
-hl("@constant.macro", { fg = c.blue })
-hl("@namespace", { fg = c.cyan })
-hl("@symbol", { fg = c.cyan })
+hl("@constant", { fg = c.jade })
+hl("@constant.builtin", { fg = c.jade })
+hl("@constant.macro", { fg = c.jade })
+hl("@namespace", { fg = c.ice })
+hl("@symbol", { fg = c.aqua })
 
 -- Treesitter markup (Markdown, etc.)
 hl("@markup", { fg = c.fg })
@@ -234,31 +238,31 @@ hl("@markup.heading.3", { fg = c.fg_bright, bold = true })
 hl("@markup.heading.4", { fg = c.fg_bright, bold = true })
 hl("@markup.heading.5", { fg = c.fg_bright, bold = true })
 hl("@markup.heading.6", { fg = c.fg_bright, bold = true })
-hl("@markup.link", { fg = c.cyan, underline = true })
-hl("@markup.link.label", { fg = c.cyan })
-hl("@markup.link.url", { fg = c.cyan_dim, underline = true })
-hl("@markup.list", { fg = c.blue_dim }) -- Blue instead of orange
-hl("@markup.list.checked", { fg = c.blue })
-hl("@markup.list.unchecked", { fg = c.blue_dim })
+hl("@markup.link", { fg = c.aqua, underline = true })
+hl("@markup.link.label", { fg = c.aqua })
+hl("@markup.link.url", { fg = c.aqua_dim, underline = true })
+hl("@markup.list", { fg = c.seafoam_dim })
+hl("@markup.list.checked", { fg = c.jade })
+hl("@markup.list.unchecked", { fg = c.seafoam_dim })
 hl("@markup.quote", { fg = c.comment, italic = true })
-hl("@markup.math", { fg = c.blue })
-hl("@markup.raw", { fg = c.cyan })
-hl("@markup.raw.markdown_inline", { fg = c.cyan })
+hl("@markup.math", { fg = c.jade })
+hl("@markup.raw", { fg = c.ice })
+hl("@markup.raw.markdown_inline", { fg = c.ice })
 hl("@text", { fg = c.fg })
 hl("@text.strong", { bold = true })
 hl("@text.emphasis", { italic = true })
 hl("@text.underline", { underline = true })
 hl("@text.strike", { strikethrough = true })
 hl("@text.title", { fg = c.fg_bright, bold = true })
-hl("@text.literal", { fg = c.cyan })
-hl("@text.uri", { fg = c.cyan, underline = true })
-hl("@tag", { fg = c.blue }) -- Blue instead of orange
-hl("@tag.attribute", { fg = c.cyan })
+hl("@text.literal", { fg = c.ice })
+hl("@text.uri", { fg = c.aqua, underline = true })
+hl("@tag", { fg = c.pale })
+hl("@tag.attribute", { fg = c.aqua })
 hl("@tag.delimiter", { fg = c.fg_dim })
 
 -- LSP Semantic Tokens
 hl("@lsp.type.class", { link = "Type" })
-hl("@lsp.type.decorator", { fg = c.cyan })
+hl("@lsp.type.decorator", { fg = c.ice })
 hl("@lsp.type.enum", { link = "Type" })
 hl("@lsp.type.enumMember", { link = "@constant" })
 hl("@lsp.type.function", { link = "@function" })
@@ -282,73 +286,71 @@ hl("@lsp.mod.deprecated", { strikethrough = true })
 hl("@lsp.typemod.function.defaultLibrary", { link = "@function.builtin" })
 hl("@lsp.typemod.variable.defaultLibrary", { link = "@variable.builtin" })
 
--- LSP Diagnostics - Light red for warnings/errors
+-- LSP Diagnostics
 hl("DiagnosticError", { fg = c.red_light })
-hl("DiagnosticWarn", { fg = c.amber })
+hl("DiagnosticWarn", { fg = c.orange })
 hl("DiagnosticInfo", { fg = c.fg_dim })
 hl("DiagnosticHint", { fg = c.fg_muted })
-hl("DiagnosticOk", { fg = c.cyan })
+hl("DiagnosticOk", { fg = c.seafoam })
 hl("DiagnosticUnderlineError", { undercurl = true, sp = c.red_light })
-hl("DiagnosticUnderlineWarn", { undercurl = true, sp = c.amber })
+hl("DiagnosticUnderlineWarn", { undercurl = true, sp = c.orange })
 hl("DiagnosticUnderlineInfo", { undercurl = true, sp = c.fg_dim })
 hl("DiagnosticUnderlineHint", { undercurl = true, sp = c.fg_muted })
-hl("DiagnosticUnderlineOk", { undercurl = true, sp = c.cyan })
-hl("DiagnosticVirtualTextError", { fg = c.red_subtle }) -- Subtle so not distracting
-hl("DiagnosticVirtualTextWarn", { fg = c.amber })
+hl("DiagnosticUnderlineOk", { undercurl = true, sp = c.seafoam })
+hl("DiagnosticVirtualTextError", { fg = c.red_subtle })
+hl("DiagnosticVirtualTextWarn", { fg = c.orange })
 hl("DiagnosticVirtualTextInfo", { fg = c.comment })
 hl("DiagnosticVirtualTextHint", { fg = c.comment })
 
--- LSP References - subtle highlight when hovering/referencing
+-- LSP References
 hl("LspReferenceText", { bg = c.bg_highlight })
 hl("LspReferenceRead", { bg = c.bg_highlight })
 hl("LspReferenceWrite", { bg = c.bg_highlight })
-hl("LspSignatureActiveParameter", { fg = c.cyan_bright, bold = true }) -- Cyan, not orange
+hl("LspSignatureActiveParameter", { fg = c.seafoam_bright, bold = true })
 hl("LspCodeLens", { fg = c.comment })
 
--- Git Signs - Teal for additions, orange for changes, red for deletions
-hl("GitSignsAdd", { fg = c.teal, bg = c.none })      -- Seagreen/teal
-hl("GitSignsChange", { fg = c.orange, bg = c.none })    -- Orange for changes
-hl("GitSignsDelete", { fg = c.red_light, bg = c.none }) -- Red for deletions
+-- Git Signs
+hl("GitSignsAdd", { fg = c.teal, bg = c.none })
+hl("GitSignsChange", { fg = c.orange, bg = c.none })
+hl("GitSignsDelete", { fg = c.red_light, bg = c.none })
 hl("GitSignsAddNr", { fg = c.teal })
 hl("GitSignsChangeNr", { fg = c.orange })
 hl("GitSignsDeleteNr", { fg = c.red_light })
-hl("GitSignsAddLn", { bg = "#0a1a14" })    -- Very subtle teal tint
-hl("GitSignsChangeLn", { bg = "#1a1408" }) -- Subtle orange tint
-hl("GitSignsDeleteLn", { bg = "#1a0808" }) -- Subtle red tint
+hl("GitSignsAddLn", { bg = "#0a1a14" })
+hl("GitSignsChangeLn", { bg = "#1a1408" })
+hl("GitSignsDeleteLn", { bg = "#1a0808" })
 hl("GitSignsCurrentLineBlame", { fg = c.comment, italic = true })
 
--- Diff - teal for additions, orange for changes, red for deletions
-hl("DiffAdd", { bg = "#0a1a14" })       -- Subtle teal tint
-hl("DiffChange", { bg = "#1a1408" })    -- Subtle orange tint
-hl("DiffDelete", { bg = "#1a0808" })    -- Subtle red tint
-hl("DiffText", { bg = "#2a1e0a" })      -- Orange highlight for changed text
-hl("DiffAdded", { fg = c.teal })        -- Seagreen/teal
-hl("DiffChanged", { fg = c.orange })    -- Orange
-hl("DiffRemoved", { fg = c.red_light }) -- Red
+-- Diff
+hl("DiffAdd", { bg = "#0a1a14" })
+hl("DiffChange", { bg = "#1a1408" })
+hl("DiffDelete", { bg = "#1a0808" })
+hl("DiffText", { bg = "#2a1e0a" })
+hl("DiffAdded", { fg = c.teal })
+hl("DiffChanged", { fg = c.orange })
+hl("DiffRemoved", { fg = c.red_light })
 
 -- Snacks.nvim
 hl("SnacksNormal", { fg = c.fg, bg = c.none })
 hl("SnacksNormalNC", { fg = c.fg, bg = c.none })
 hl("SnacksWin", { fg = c.fg, bg = c.none })
 hl("SnacksWinNC", { fg = c.fg, bg = c.none })
-hl("SnacksPickerDir", { fg = c.cyan })
+hl("SnacksPickerDir", { fg = c.aqua })
 hl("SnacksPickerFile", { fg = c.fg_bright })
-hl("SnacksPickerMatch", { fg = c.orange, bold = true }) -- ORANGE - what you're selecting
+hl("SnacksPickerMatch", { fg = c.orange, bold = true })
 hl("SnacksExplorerNormal", { fg = c.fg, bg = c.none })
 hl("SnacksExplorerNormalNC", { fg = c.fg, bg = c.none })
--- Snacks git status colors
-hl("SnacksPickerGitStatusModified", { fg = c.orange })   -- Orange for modified files
-hl("SnacksPickerGitStatusAdded", { fg = c.teal })        -- Teal for additions
-hl("SnacksPickerGitStatusUntracked", { fg = c.teal })    -- Teal for untracked
-hl("SnacksPickerGitStatusDeleted", { fg = c.red_light }) -- Red for deletions
-hl("SnacksPickerGitStatusUnmerged", { fg = c.teal })     -- Teal for unmerged
+hl("SnacksPickerGitStatusModified", { fg = c.orange })
+hl("SnacksPickerGitStatusAdded", { fg = c.teal })
+hl("SnacksPickerGitStatusUntracked", { fg = c.teal })
+hl("SnacksPickerGitStatusDeleted", { fg = c.red_light })
+hl("SnacksPickerGitStatusUnmerged", { fg = c.teal })
 hl("SnacksPickerGitAdd", { fg = c.teal })
 hl("SnacksPickerGitChange", { fg = c.orange })
 hl("SnacksPickerGitDelete", { fg = c.red_light })
 hl("SnacksGitAdd", { fg = c.teal })
 hl("SnacksGitChange", { fg = c.orange })
 hl("SnacksGitDelete", { fg = c.red_light })
--- Snacks git icons - match text colors
 hl("SnacksPickerIconGitStatusModified", { fg = c.orange })
 hl("SnacksPickerIconGitStatusAdded", { fg = c.teal })
 hl("SnacksPickerIconGitStatusUntracked", { fg = c.teal })
@@ -363,37 +365,38 @@ hl("BlinkCmpMenu", { fg = c.fg, bg = c.bg_alt })
 hl("BlinkCmpMenuBorder", { fg = c.border, bg = c.bg_alt })
 hl("BlinkCmpMenuSelection", { fg = c.fg_bright, bg = c.bg_highlight })
 hl("BlinkCmpLabel", { fg = c.fg_dim })
-hl("BlinkCmpLabelMatch", { fg = c.orange, bold = true }) -- ORANGE - matched characters
-hl("BlinkCmpLabelMatchFuzzy", { fg = c.cyan_bright })    -- Cyan for fuzzy (less important)
+hl("BlinkCmpLabelMatch", { fg = c.orange, bold = true })
+hl("BlinkCmpLabelMatchFuzzy", { fg = c.seafoam_bright })
 hl("BlinkCmpKind", { fg = c.fg_muted })
 hl("BlinkCmpDoc", { fg = c.fg, bg = c.bg_alt })
 hl("BlinkCmpDocBorder", { fg = c.border, bg = c.bg_alt })
+hl("BlinkCmpLabelDetail", { fg = c.fg_muted })
+hl("BlinkCmpLabelDescription", { fg = c.fg_muted })
+hl("BlinkCmpGhostText", { fg = c.comment })
 
 -- Cmp (nvim-cmp) - for compatibility
 hl("CmpItemAbbr", { fg = c.fg_dim })
-hl("CmpItemAbbrMatch", { fg = c.orange, bold = true }) -- ORANGE
-hl("CmpItemAbbrMatchFuzzy", { fg = c.cyan_bright })
+hl("CmpItemAbbrMatch", { fg = c.orange, bold = true })
+hl("CmpItemAbbrMatchFuzzy", { fg = c.seafoam_bright })
 hl("CmpItemMenu", { fg = c.fg_muted, italic = true })
-hl("CmpItemKind", { fg = c.blue })
+hl("CmpItemKind", { fg = c.seafoam })
 
 -- Lualine (StatusLine groups for auto-detection)
-hl("StatusNormal", { fg = c.black, bg = c.blue })          -- Blue for normal mode
-hl("StatusInsert", { fg = c.black, bg = c.teal })          -- Teal for insert mode
-hl("StatusVisual", { fg = c.black, bg = c.orange })        -- Orange for visual mode
-hl("StatusReplace", { fg = c.fg_bright, bg = c.red_light })    -- Red for replace mode
-hl("StatusCommand", { fg = c.black, bg = c.cyan_bright })  -- Bright cyan for command mode
-hl("StatusTerminal", { fg = c.black, bg = c.blue_bright }) -- Bright blue for terminal mode
+hl("StatusNormal", { fg = c.black, bg = c.seafoam })
+hl("StatusInsert", { fg = c.black, bg = c.teal })
+hl("StatusVisual", { fg = c.black, bg = c.orange })
+hl("StatusReplace", { fg = c.fg_bright, bg = c.red_light })
+hl("StatusCommand", { fg = c.black, bg = c.ice })
+hl("StatusTerminal", { fg = c.black, bg = c.aqua })
 
 -- Bufferline
 hl("BufferLineFill", { bg = c.none })
 hl("BufferLineBackground", { fg = c.fg_muted, bg = c.none })
-hl("BufferLineBufferSelected", { fg = c.fg_bright, bg = c.bg_highlight, bold = true }) -- Bright text, not orange
+hl("BufferLineBufferSelected", { fg = c.fg_bright, bg = c.bg_highlight, bold = true })
 hl("BufferLineBufferVisible", { fg = c.fg_dim, bg = c.none })
 hl("BufferLineSeparator", { fg = c.border, bg = c.none })
 hl("BufferLineDiagnostic", { fg = c.red_subtle })
 hl("BufferLineDiagnosticVisible", { fg = c.red_subtle })
--- Bufferline icons - ensure they inherit background from parent tab
--- Create a function to set icon backgrounds for all file types
 local icon_filetypes = {
   "lua", "vim", "js", "ts", "tsx", "jsx", "py", "go", "rs", "c", "cpp",
   "h", "hpp", "md", "txt", "json", "yaml", "toml", "sh", "bash", "zsh",
@@ -410,36 +413,36 @@ end
 hl("TelescopeBorder", { fg = c.border, bg = c.bg_alt })
 hl("TelescopeNormal", { fg = c.fg, bg = c.bg_alt })
 hl("TelescopeSelection", { fg = c.fg_bright, bg = c.bg_highlight })
-hl("TelescopeMatching", { fg = c.orange, bold = true }) -- ORANGE - matched text
-hl("TelescopePromptPrefix", { fg = c.cyan })            -- Cyan instead of orange
+hl("TelescopeMatching", { fg = c.orange, bold = true })
+hl("TelescopePromptPrefix", { fg = c.seafoam })
 
 -- Notify
 hl("NotifyERRORBorder", { fg = c.red_light })
-hl("NotifyWARNBorder", { fg = c.amber })
+hl("NotifyWARNBorder", { fg = c.orange })
 hl("NotifyINFOBorder", { fg = c.fg_dim })
 hl("NotifyDEBUGBorder", { fg = c.comment })
 hl("NotifyTRACEBorder", { fg = c.comment })
 hl("NotifyERRORIcon", { fg = c.red_light })
-hl("NotifyWARNIcon", { fg = c.amber })
+hl("NotifyWARNIcon", { fg = c.orange })
 hl("NotifyINFOIcon", { fg = c.fg_dim })
 hl("NotifyDEBUGIcon", { fg = c.comment })
 hl("NotifyTRACEIcon", { fg = c.comment })
 hl("NotifyERRORTitle", { fg = c.red_light, bold = true })
-hl("NotifyWARNTitle", { fg = c.amber })
+hl("NotifyWARNTitle", { fg = c.orange })
 hl("NotifyINFOTitle", { fg = c.fg_dim })
 hl("NotifyDEBUGTitle", { fg = c.comment })
 hl("NotifyTRACETitle", { fg = c.comment })
 
 -- Health
 hl("HealthError", { fg = c.red_light })
-hl("HealthWarning", { fg = c.amber })
-hl("HealthSuccess", { fg = c.cyan })
+hl("HealthWarning", { fg = c.orange })
+hl("HealthSuccess", { fg = c.seafoam })
 
 -- Misc
 hl("Conceal", { fg = c.comment })
 hl("SpellBad", { undercurl = true, sp = c.red_light })
 hl("SpellCap", { undercurl = true, sp = c.red_dim })
-hl("SpellLocal", { undercurl = true, sp = c.cyan })
-hl("SpellRare", { undercurl = true, sp = c.blue })
+hl("SpellLocal", { undercurl = true, sp = c.aqua })
+hl("SpellRare", { undercurl = true, sp = c.seafoam })
 
 return c
